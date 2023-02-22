@@ -1,4 +1,3 @@
-
 // EXERCISE 14
 // The balance is supposed to equal the difference of all deposits and all withdrawals.
 // Check every bank account balance and return the array of bank accounts with a wrong balance
@@ -6,8 +5,37 @@
 // getClientsWithWrongBalance(bankAccounts) => [{ name: 'Name1', balance: 32, ... }, { name: 'Name2', balance: 3523, ... }]
 
 export function getClientsWithWrongBalance(array) {
-  // Your code goes here...
-
+    var wrongBalances = [];
+    for (let client of array) {
+        var totalDeposits = 0;
+        var totalWithdrawals = 0;
+        // if client does not have deposits/balances
+        if (!client.hasOwnProperty("deposits") && !client.hasOwnProperty("withdrawals") && client.balance !== 0) {
+            wrongBalances.push(client);
+        }
+        // if client only has deposits
+        if (client.hasOwnProperty("deposits") && !client.hasOwnProperty("withdrawals")) {
+            for (let deposit of client.deposits) {
+                totalDeposits += deposit
+            }
+            if (totalDeposits !== client.balance) {
+                wrongBalances.push(client);
+            }
+        }
+        // client has deposits and withdrawals
+        if (client.hasOwnProperty("deposits") && client.hasOwnProperty("withdrawals")) {
+            for (let deposit of client.deposits) {
+                totalDeposits += deposit;
+            }
+            for (let wd of client.withdrawals) {
+                totalWithdrawals += wd;
+            }
+            if (client.balance !== (totalDeposits - totalWithdrawals)) {
+                wrongBalances.push(client);
+            }
+        }
+    }
+    return wrongBalances;
 }
 
 

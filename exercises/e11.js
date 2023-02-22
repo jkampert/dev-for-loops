@@ -5,8 +5,19 @@
 // getAllWithdrawals(bankAccounts) => [3432, 0, 43242.34, 0, 23432]
 
 export function getAllWithdrawals(array) {
-  // Your code goes here...
-
+    var withdrawalsSums = [];
+    for (let client of array) {
+        var sum = 0;
+        if (client.hasOwnProperty("withdrawals")) {
+            for (let wd of client.withdrawals) {
+                sum += wd;
+            }
+            withdrawalsSums.push(sum);
+        } else {
+            withdrawalsSums.push(0);
+        }
+    }
+    return withdrawalsSums;
 }
 
 // === TEST YOURSELF ===

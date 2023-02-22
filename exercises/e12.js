@@ -1,12 +1,20 @@
-
 // EXERCISE 12
 // Return an array of all deposits greater than 100
 // Array example: bankAccounts in /data/data.js
 // getAllDepositsGreaterThanOneHundred(bankAccounts) => [3432, 43242.34, 23432]
 
 export function getAllDepositsGreaterThanOneHundred(array) {
-  // Your code goes here...
-
+    var greaterThanOneHundred = [];
+    for (let client of array) {
+        if (client.hasOwnProperty("deposits")) {
+            for (let dep of client.deposits) {
+                if (dep > 100) {
+                    greaterThanOneHundred.push(dep);
+                }
+            }
+        }
+    }
+    return greaterThanOneHundred;
 }
 
 

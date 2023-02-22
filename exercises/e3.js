@@ -1,11 +1,13 @@
-
 // EXERCISE 3
 // Return the average value for the given array of numbers, f.i.
 // getAverage([22, 45, 4, 65]) => 34
 
 export function getAverage(array) {
-  // Your code goes here...
-
+    var sum = 0;
+    for (let num of array) {
+        sum += num;
+    }
+    return sum / array.length;
 }
 
 
